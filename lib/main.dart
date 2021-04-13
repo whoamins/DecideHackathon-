@@ -1,6 +1,5 @@
-import 'package:decide_hackathon/helpers/dash.dart';
-import 'package:decide_hackathon/screens/main_page_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:decide_hackathon/helpers/dash.dart';
 
 
 void main() => runApp(MyApp());

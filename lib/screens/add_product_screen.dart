@@ -1,9 +1,17 @@
+import 'package:decide_hackathon/db/db.dart';
+import 'package:decide_hackathon/models/product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:sqflite/sqflite.dart';
 
 class AddProductScreen extends StatefulWidget {
+
+  final Product product;
+
+  AddProductScreen({this.product});
+
   @override
   _AddProductScreenState createState() => _AddProductScreenState();
 }
@@ -12,6 +20,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final _formKey = GlobalKey<FormState>();
   String _title = '';
   String _product;
+  int _quantity;
   DateTime _date = DateTime.now();
   TextEditingController _dateController = TextEditingController();
   final DateFormat _dateFormatter = DateFormat("MMM dd, yyyy");
@@ -20,6 +29,13 @@ class _AddProductScreenState extends State<AddProductScreen> {
   @override
   void initState() {
     super.initState();
+
+    if (widget.product != null) {
+      _title = widget.product.title;
+      _date = widget.product.expirationDate;
+      _quantity = widget.product.quantity;
+    }
+
     _dateController.text = _dateFormatter.format(_date);
   }
 
@@ -48,6 +64,13 @@ class _AddProductScreenState extends State<AddProductScreen> {
     if(_formKey.currentState.validate()) {
       _formKey.currentState.save();
       print("$_title, $_date, $_product");
+
+      Product product = Product(title: _title, expirationDate: _date, quantity: _quantity);
+      if (widget.product == null) {
+        DatabaseManager.instance.insertProduct(product);
+      } else {
+        DatabaseManager.instance.updateProduct(product);
+      }
 
 
       Navigator.pop(context);
@@ -78,7 +101,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   child: Column(
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20.0),
+                        padding: EdgeInsets.symmetric(vertical: 10.0),
                         child: DropdownButtonFormField(
                           isDense: true,
                           icon: Icon(Icons.arrow_drop_down_circle),
@@ -115,7 +138,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20.0),
+                        padding: EdgeInsets.symmetric(vertical: 10.0),
                         child: TextFormField(
                           readOnly: true,
                           controller: _dateController,
@@ -131,7 +154,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20.0),
+                        padding: EdgeInsets.symmetric(vertical: 10.0),
                         child: TextFormField(
                           keyboardType: TextInputType.number,
                           inputFormatters: <TextInputFormatter>[
@@ -151,7 +174,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(vertical: 20.0),
+                        margin: EdgeInsets.symmetric(vertical: 10.0),
                         height: 60.0,
                         width: double.infinity,
                         decoration: BoxDecoration(
@@ -161,6 +184,43 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         child: FlatButton(
                           child: Text(
                             'Добавить',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                            ),
+                          ),
+                          onPressed: _submit,
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 10.0),
+                        height: 60.0,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: BorderRadius.circular(30.0)
+                        ),
+                        child: FlatButton(
+                          child: Text(
+                            'Сканировать Штрих-Код',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 10.0),
+                        height: 60.0,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: BorderRadius.circular(30.0)
+                        ),
+                        child: FlatButton(
+                          child: Text(
+                            'Сканировать QR-Код',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20.0,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:decide_hackathon/screens/add_product_screen.dart';
 import 'package:decide_hackathon/screens/main_page_screen.dart';
 
@@ -36,7 +37,7 @@ class _DashState extends State<Dash> {
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
             title: Text('Добавить'),
-          )
+          ),
         ],
       ),
     );
