@@ -13,7 +13,7 @@ class _MainPageScreenState extends State<MainPageScreen> {
       child: Column(
         children: [
           ListTile(
-            title: Text('Бахнув пельменів'),
+            title: Text('Product...'),
             subtitle: Text('Date | sad'),
           ),
           Divider(),
@@ -45,7 +45,7 @@ class _MainPageScreenState extends State<MainPageScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'qwe',
+                      'Хранилище',
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 40.0,
@@ -53,7 +53,7 @@ class _MainPageScreenState extends State<MainPageScreen> {
                     ),
                     SizedBox(height: 10.0),
                     Text(
-                      'qwe',
+                      'Ваши товары',
                       style: TextStyle(
                           color: Colors.grey,
                           fontSize: 20.0,
