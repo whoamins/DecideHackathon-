@@ -7,6 +7,13 @@ class MainPageScreen extends StatefulWidget {
 }
 
 class _MainPageScreenState extends State<MainPageScreen> {
+  int _currentIndex = 0;
+
+  List<Widget> listItems = [
+    MainPageScreen(),
+    AddProductScreen(),
+  ];
+
   Widget _buildTask(int index) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 25.0),
@@ -22,49 +29,47 @@ class _MainPageScreenState extends State<MainPageScreen> {
     );
   }
 
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-            backgroundColor: Theme.of(context).primaryColor,
-            child: Icon(Icons.add),
-            onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => AddProductScreen(),
+      body: ListView.builder(
+        padding: EdgeInsets.symmetric(vertical: 40.0),
+        itemCount: 10,
+        itemBuilder: (BuildContext context, int index) {
+          if (index == 0) {
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    'Хранилище',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 40.0,
+                        fontWeight: FontWeight.bold),
                   ),
-                )),
-        body: ListView.builder(
-          padding: EdgeInsets.symmetric(vertical: 80.0),
-          itemCount: 10,
-          itemBuilder: (BuildContext context, int index) {
-            if (index == 0) {
-              return Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Хранилище',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 40.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 10.0),
-                    Text(
-                      'Ваши товары',
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ],
-                ),
-              );
-            }
-            return _buildTask(index);
-          },
-        ));
+                  SizedBox(height: 10.0),
+                  Text(
+                    'Ваши товары',
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ],
+              ),
+            );
+          }
+          return _buildTask(index);
+        },
+      ),
+    );
   }
 }

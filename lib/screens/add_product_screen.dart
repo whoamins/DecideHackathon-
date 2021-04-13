@@ -65,12 +65,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: Icon(Icons.arrow_back_ios,
-                      size: 30, color: Theme.of(context).primaryColor),
-                ),
-                SizedBox(height: 20.0),
                 Text(
                   'Новый товар',
                   style: TextStyle(
