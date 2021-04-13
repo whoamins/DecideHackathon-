@@ -72,7 +72,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 ),
                 SizedBox(height: 20.0),
                 Text(
-                  'Добавление цйуу123',
+                  'Новый товар',
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 40.0,
@@ -152,7 +152,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                             ),
                           ),
                           validator: (input) =>
-                              input.trim().isEmpty ? 'Установите название!' : null,
+                              input.trim().isEmpty ? 'Укажите количество!' : null,
                           onSaved: (input) => _title = input,
                         ),
                       ),
