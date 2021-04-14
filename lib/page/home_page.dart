@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:decide_hackathon/main.dart';
-import 'package:decide_hackathon/widgets/add_product_dialog_widget.dart';
+import 'package:decide_hackathon/widget/add_product_dialog_widget.dart';
+import 'package:decide_hackathon/widget/expired_list_widget.dart';
+import 'package:decide_hackathon/widget/product_list_widget.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -14,16 +15,14 @@ class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     final tabs = [
-      Container(),
-      Container(),
-      Container(),
+      ProductListWidget(),
+      ExpiredListWidget(),
     ];
 
-    return Scaffold(appBar: AppBar(
-        title: Text(MyApp.title),
-      ),
+    return Scaffold(
+
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.white.withOpacity(0.7),
@@ -35,31 +34,28 @@ class _HomePageState extends State<HomePage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.fact_check_outlined),
-            label: 'Продукты'
+            label: 'Продукты',
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.alarm),
-              label: 'Просроченные'
+            icon: Icon(Icons.shopping_cart, size: 28),
+            label: 'Купить',
           ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart),
-              label: 'Купить'
-          ),
-        ]
+        ],
       ),
       body: tabs[selectedIndex],
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.lightBlue,
         onPressed: () => showDialog(
           context: context,
-          builder: (_) => AddProductDialogWidget(),
+          builder: (context) => AddProductWidget(),
           barrierDismissible: false,
         ),
-        child: Icon(Icons.add)
+        child: Icon(Icons.add),
       ),
     );
   }
 }
+

@@ -1,31 +1,24 @@
-import 'dart:ui';
-
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 
 class ProductFormWidget extends StatelessWidget {
   final String title;
-  final String expirationDate;
-  final String quantity;
+  final int quantity;
   final ValueChanged<String> onChangedTitle;
-  final ValueChanged<String> onChangedExpirationDate;
-  final ValueChanged<String> onChangedQuantity;
+  final ValueChanged<int> onChangedQuantity;
   final VoidCallback onSavedProduct;
 
   static DateTime now = DateTime.now();
-  static String formattedDate = DateFormat('d MMM, yyyy').format(now);
+  static final DateFormat formattedDate = DateFormat('MMM dd, yyyy');
 
   const ProductFormWidget({
     Key key,
     this.title = '',
-    this.expirationDate = '',
-    this.quantity = '',
+    this.quantity = 1,
     @required this.onChangedTitle,
-    @required this.onChangedExpirationDate,
     @required this.onChangedQuantity,
-    @required this.onSavedProduct,
+    @required this.onSavedProduct
   }) : super(key: key);
 
   @override
@@ -35,10 +28,10 @@ class ProductFormWidget extends StatelessWidget {
       children: [
         buildTitle(),
         SizedBox(height: 8),
-        buildExpirationDate(),
-        SizedBox(height: 8),
         buildQuantity(),
         SizedBox(height: 8),
+        buildCalendar(),
+        SizedBox(height: 16),
         buildButton(),
       ],
     ),
@@ -50,45 +43,37 @@ class ProductFormWidget extends StatelessWidget {
     onChanged: onChangedTitle,
     validator: (title) {
       if(title.isEmpty) {
-        return 'Укажите название!';
+        return 'Название не может быть пустым';
       }
-
       return null;
     },
-
     decoration: InputDecoration(
       border: UnderlineInputBorder(),
       labelText: 'Название',
     ),
   );
 
-  Widget buildExpirationDate() => TextFormField(
+  Widget buildQuantity() => TextFormField(
     maxLines: 1,
-    initialValue: formattedDate,
-    validator: (expirationDate) {
-      if(expirationDate.isEmpty) {
-        return 'Укажите срок годности';
+    initialValue: "",
+    keyboardType: TextInputType.number,
+    validator: (quantity) {
+      if(quantity.isEmpty) {
+        return 'Количество не может быть пустым';
       }
+
       return null;
     },
     decoration: InputDecoration(
       border: UnderlineInputBorder(),
-      labelText: 'Срок годности',
+      labelText: 'Количество'
     ),
   );
 
-  Widget buildQuantity() => TextFormField(
-    maxLines: 1,
-    initialValue: "1",
-    validator: (expirationDate) {
-      if(expirationDate.isEmpty) {
-        return 'Укажите количество';
-      }
-      return null;
-    },
+  Widget buildCalendar() => TextFormField(
     decoration: InputDecoration(
       border: UnderlineInputBorder(),
-      labelText: 'Количество',
+      labelText: 'Тут должен быть календарь...'
     ),
   );
 
@@ -96,7 +81,7 @@ class ProductFormWidget extends StatelessWidget {
     width: double.infinity,
     child: ElevatedButton(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.black),
+        backgroundColor: MaterialStateProperty.all(Colors.lightBlue),
       ),
       onPressed: onSavedProduct,
       child: Text('Добавить'),
