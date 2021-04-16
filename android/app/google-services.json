@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "47739185303",
+    "project_id": "storageapp-b871b",
+    "storage_bucket": "storageapp-b871b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47739185303:android:53192ae7750d56774421d2",
+        "android_client_info": {
+          "package_name": "com.test.decide_hackathon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47739185303-5a0rgljnbl51v55u4hdmjjhbcln51c4a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBf-BDQ8APTG2CnGY9khd6DkO1yMVr1WcA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47739185303-5a0rgljnbl51v55u4hdmjjhbcln51c4a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

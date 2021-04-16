@@ -14,6 +14,7 @@ class AddProductWidget extends StatefulWidget {
 class _AddProductWidgetState extends State<AddProductWidget> {
   final _formKey = GlobalKey<FormState>();
   String title = '';
+  String quantity;
 
   @override
   Widget build(BuildContext context) => AlertDialog(
@@ -31,6 +32,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
         const SizedBox(height: 8),
         ProductFormWidget(
           onChangedTitle: (title) => setState(() => this.title = title),
+          onChangedQuantity: (quantity) => setState(() => this.quantity = quantity),
           onSavedProduct: addProduct,
         )
       ],
@@ -41,6 +43,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
     final product = Product(
       id: DateTime.now().toString(),
       title: title,
+      quantity: quantity,
       createdTime: DateTime.now(),
     );
 

@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
+import '../utils.dart';
+
 
 class ProductField {
   static const createdTime = 'createdTime';
@@ -9,8 +11,8 @@ class ProductField {
 class Product {
   DateTime createdTime;
   String title;
+  String quantity;
   String id;
-  int quantity;
   DateTime expirationDate;
   bool isExpired;
 
@@ -22,4 +24,20 @@ class Product {
     this.id,
     this.isExpired = false,
  });
+
+  static Product fromJson(Map<String, dynamic> json) => Product(
+    createdTime: Utils.toDateTime(json['createdTime']),
+    title: json['title'],
+    quantity: json['quantity'],
+    id: json['id'],
+    isExpired: json['isExpired'],
+  );
+
+  Map<String, dynamic> toJson() => {
+    'createdTime': Utils.fromDateTimeToJson(createdTime),
+    'title': title,
+    'quantity': quantity,
+    'expirationDate': expirationDate,
+    'isExpired': isExpired
+  };
 }

@@ -12,7 +12,7 @@ class ProductListWidget extends StatelessWidget {
 
 
     return Padding(
-      padding: const EdgeInsets.only(top: 40.0),
+      padding: const EdgeInsets.only(top: 20),
       child: products.isEmpty
           ? Center(
               child: Text(

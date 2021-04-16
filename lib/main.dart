@@ -1,11 +1,17 @@
 import 'package:decide_hackathon/page/home_page.dart';
 import 'package:decide_hackathon/provider/products.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '';
 
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  runApp(MyApp());
+}
 
 
 class MyApp extends StatelessWidget {

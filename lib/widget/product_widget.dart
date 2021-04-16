@@ -26,16 +26,22 @@ class ProductWidget extends StatelessWidget {
         IconSlideAction(
           color: Colors.green,
           onTap: () => editProduct(context, product),
-          caption: 'Edit',
+          caption: 'Изменить',
           icon: Icons.edit,
         )
       ],
       secondaryActions: [
         IconSlideAction(
           color: Colors.red,
-          caption: 'Delete',
+          caption: 'Удалить',
           onTap: () => deleteProduct(context, product),
           icon: Icons.delete,
+        ),
+        IconSlideAction(
+          color: Colors.orange,
+          caption: 'Уменьшить',
+          onTap: () => reduceProduct(context, product),
+          icon: Icons.exposure_minus_1,
         )
       ],
       child: buildProduct(context),
@@ -45,7 +51,7 @@ class ProductWidget extends StatelessWidget {
   Widget buildProduct(BuildContext context) => GestureDetector(
     onTap: () => editProduct(context, product),
     child: Container(
-      color: Colors.white,
+      color: Color(0xff7f00ff),
       padding: EdgeInsets.all(20),
       child: Row(
         children: [
@@ -56,15 +62,14 @@ class ProductWidget extends StatelessWidget {
             onChanged: (_) {
               final provider =
               Provider.of<ProductProvider>(context, listen: false);
-              final isDone = provider.toggleProductStatus(product);
-
+              final isExpired = provider.toggleProductStatus(product);
               Utils.showSnackBar(
                 context,
-                isDone ? 'Просроченно. Добавлено в список продуктов.' : 'А нет, не просроченный.',
+                isExpired ? 'Просроченно. Добавлено в список продуктов.' : 'А нет, не просроченный.',
               );
             },
           ),
-          const SizedBox(width: 20),
+          const SizedBox(width: 15),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +78,7 @@ class ProductWidget extends StatelessWidget {
                   "${product.title} | ${product.quantity}",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Theme.of(context).primaryColor,
+                    color: Colors.white,
                     fontSize: 22,
                   ),
                 ),
@@ -89,7 +94,7 @@ class ProductWidget extends StatelessWidget {
     final provider = Provider.of<ProductProvider>(context, listen: false);
     provider.removeProduct(product);
 
-    Utils.showSnackBar(context, 'Deleted the task');
+    Utils.showSnackBar(context, 'Товар удален');
   }
 
   void editProduct(BuildContext context, Product product) => Navigator.of(context).push(
@@ -97,4 +102,11 @@ class ProductWidget extends StatelessWidget {
       builder: (context) => EditProductPage(product: product),
     ),
   );
+
+  void reduceProduct(BuildContext context, Product product) {
+    final provider = Provider.of<ProductProvider>(context, listen: false);
+    provider.reduceProduct(product);
+
+    Utils.showSnackBar(context, 'Количество уменьшено');
+  }
 }
