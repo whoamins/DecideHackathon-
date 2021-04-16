@@ -22,7 +22,7 @@ class ProductListWidget extends StatelessWidget {
       ) : ListView.separated(
             physics: BouncingScrollPhysics(),
             padding: EdgeInsets.all(16),
-            separatorBuilder: (context, index) => Container(height: 8),
+            separatorBuilder: (context, index) => Container(height: 32),
             itemCount: products.length,
             itemBuilder: (context, index) {
               final product = products[index];

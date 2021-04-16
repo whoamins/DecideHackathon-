@@ -12,8 +12,8 @@ class Product {
   DateTime createdTime;
   String title;
   String quantity;
-  String id;
   String expirationDate;
+  String id;
   bool isExpired;
 
   Product({

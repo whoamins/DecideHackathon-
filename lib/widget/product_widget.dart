@@ -75,11 +75,18 @@ class ProductWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "${product.title} | ${product.quantity} | ${product.expirationDate}",
+                  "${product.title} | ${product.quantity}",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     fontSize: 22,
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 4),
+                  child: Text(
+                    "Aug 26, 21",
+                    style: TextStyle(fontSize: 20, height: 1.5, color: Colors.white),
                   ),
                 ),
               ],

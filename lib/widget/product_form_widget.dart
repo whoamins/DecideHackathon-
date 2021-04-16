@@ -85,19 +85,24 @@ class ProductFormWidget extends StatelessWidget {
   );
 
   Widget buildCalendar(BuildContext context) => TextFormField(
-    keyboardType: TextInputType.phone,
+    maxLines: 1,
     controller: _textEditingController,
-    onChanged: onChangedExpirationDate,
     onTap: () {
       _selectDate(context);
-      },
-    readOnly: true,
+    },
+    onChanged: onChangedExpirationDate,
     decoration: InputDecoration(
       border: OutlineInputBorder(
         borderRadius: const BorderRadius.all(Radius.circular(10.0)),
       ),
       labelText: 'Срок годности',
     ),
+    validator: (expirationDate) {
+      if(expirationDate.isEmpty) {
+        return 'Срок годности не может быть пустым';
+      }
+      return null;
+    },
   );
     /*
     maxLines: 1,

@@ -31,6 +31,7 @@ class _EditProductPageState extends State<EditProductPage> {
     super.initState();
     title = widget.product.title;
     quantity = widget.product.quantity;
+    expirationDate= widget.product.expirationDate;
   }
 
 
