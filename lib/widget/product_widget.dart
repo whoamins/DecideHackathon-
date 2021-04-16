@@ -75,7 +75,7 @@ class ProductWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "${product.title} | ${product.quantity}",
+                  "${product.title} | ${product.quantity} | ${product.expirationDate}",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,

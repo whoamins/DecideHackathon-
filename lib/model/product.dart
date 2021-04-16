@@ -13,7 +13,7 @@ class Product {
   String title;
   String quantity;
   String id;
-  DateTime expirationDate;
+  String expirationDate;
   bool isExpired;
 
   Product({

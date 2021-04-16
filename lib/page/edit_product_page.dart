@@ -24,6 +24,7 @@ class _EditProductPageState extends State<EditProductPage> {
 
   String title;
   String quantity;
+  String expirationDate;
 
   @override
   void initState() {
@@ -34,7 +35,7 @@ class _EditProductPageState extends State<EditProductPage> {
 
 
   @override
-  Widget build(BuildContext) => Scaffold(
+  Widget build(BuildContext context) => Scaffold(
     appBar: GradientAppBar(
         title: 'STORAGE',
         gradientBegin: Color(0xff7f00ff),
@@ -48,6 +49,7 @@ class _EditProductPageState extends State<EditProductPage> {
           title: title,
           onChangedTitle: (title) => setState(() => this.title = title),
           onChangedQuantity: (quantity) => setState(() => this.quantity = quantity),
+          onChangedExpirationDate: (expirationDate) => setState(() => this.expirationDate = expirationDate),
           onSavedProduct: saveProduct,
         ),
       ),
@@ -63,7 +65,7 @@ class _EditProductPageState extends State<EditProductPage> {
     } else {
       final provider = Provider.of<ProductProvider>(context, listen: false);
 
-      provider.updateProduct(widget.product, title, quantity);
+      provider.updateProduct(widget.product, title, quantity, expirationDate);
 
       Navigator.of(context).pop();
     }

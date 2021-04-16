@@ -48,9 +48,10 @@ class ProductProvider extends ChangeNotifier {
     return product.isExpired;
   }
 
-  void updateProduct(Product product, String title, String quantity) {
+  void updateProduct(Product product, String title, String quantity, String expirationDate) {
     product.title = title;
     product.quantity = quantity;
+    product.expirationDate = expirationDate;
     notifyListeners();
     //FirebaseApi.updateProduct(product);
   }

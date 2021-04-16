@@ -15,6 +15,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
   final _formKey = GlobalKey<FormState>();
   String title = '';
   String quantity;
+  String expirationDate;
 
   @override
   Widget build(BuildContext context) => AlertDialog(
@@ -33,6 +34,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
         ProductFormWidget(
           onChangedTitle: (title) => setState(() => this.title = title),
           onChangedQuantity: (quantity) => setState(() => this.quantity = quantity),
+          onChangedExpirationDate: (expirationDate) => setState(() => this.expirationDate = expirationDate),
           onSavedProduct: addProduct,
         )
       ],
@@ -44,6 +46,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
       id: DateTime.now().toString(),
       title: title,
       quantity: quantity,
+      expirationDate: expirationDate,
       createdTime: DateTime.now(),
     );
 

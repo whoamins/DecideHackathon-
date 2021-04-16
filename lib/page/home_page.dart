@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
     return Scaffold(
       appBar: GradientAppBar(
-        title: 'STORAGE',
+        title: 'ХРАНИЛИЩЕ',
         gradientBegin: Color(0xff7f00ff),
         gradientEnd: Color(0xffe100ff),
       ),
